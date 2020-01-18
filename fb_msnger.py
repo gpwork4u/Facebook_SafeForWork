@@ -6,7 +6,7 @@ class FB_Messenger_Handler():
         self.url='https://m.facebook.com/'
         self.msnger_url='https://m.facebook.com/messages/?no_hist=1'
 
-        self.suffering_headers={
+        self.login_headers={
             'authority': 'm.facebook.com',
             'method': 'POST',
             'scheme': 'https',
@@ -16,7 +16,7 @@ class FB_Messenger_Handler():
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36',
         }
         self.session=requests.Session()
-        self.session.headers.update(self.suffering_headers)
+        self.session.headers.update(self.login_headers)
         self.facebook_id=facebook_id
     def get_msg_list(self):
         msg_req=self.session.get(self.msnger_url)
