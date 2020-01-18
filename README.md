@@ -10,4 +10,4 @@ use facebook messenger with terminal
 - [ ] emoji decode
 - [ ] group message can't send
 - [ ] vs code extention(?)
-- [ ] suffer facebook post(?)
+- [ ] Veiw facebook post(?)
