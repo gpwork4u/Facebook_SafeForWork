@@ -4,6 +4,10 @@ use facebook messenger with terminal
 ### Requirements
 - requests
 - bs4
+### Usage
+```bash
+$python fb_sfw.py
+```
 
 ### To do list
 - [ ] refresh messages faster
