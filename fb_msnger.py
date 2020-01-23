@@ -83,7 +83,7 @@ class FB_Messenger_Handler():
             '__req': 'dv',
             '__ajax__':' AYkRz9aV8yXy7KRuJioSm333Z47naWOE9uloTso3qNJEzR2GBBH-_aOtM_D0sTfFUtuvh1YFyXZmVHMBI-lHq8Jbs-6pYqX0dBTKrX8FXUjO8g',
             '__a':'AYkRz9aV8yXy7KRuJioSm333Z47naWOE9uloTso3qNJEzR2GBBH-_aOtM_D0sTfFUtuvh1YFyXZmVHMBI-lHq8Jbs-6pYqX0dBTKrX8FXUjO8g',
-            '__user': '100000193140824',
+            '__user': self.facebook_id,
         }
 
         send_msg=self.session.post(self.url+'/messages/send/?icm=1&entrypoint=web%3Atrigger%3Athread_list_thread&refid=12',data=msg_form_data)
