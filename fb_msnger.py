@@ -65,15 +65,8 @@ class FB_Messenger_Handler():
             print(author+':')
             msgs=msg_block.find_all('div',class_='_34ej')
             for msg in msgs:
-                try:
-                    if msg.string!=None:
-                        print(msg.string)
-                #to do:emoji analys (is in <span>
-                except UnicodeEncodeError:
-                    print("emoji")
-                    emojis=msg.find_all('span',class_='_6qdm')
-                    for emoji in emojis:
-                        print(emoji.string)
+                if msg.text!=None:
+                    print(msg.text)
 
     def send_msg_to_user(self,username,msg):
         self.msg_form_data={
