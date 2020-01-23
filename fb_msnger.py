@@ -25,11 +25,13 @@ class FB_Messenger_Handler():
             print('status_code:'+str(msg_req.status_code))
             return
         msg_html=msg_req.text
+        
         #get messenger data in <code>
         msg_soup = BeautifulSoup(msg_html, 'lxml')
         code=msg_soup.find('code',id='u_0_10')
         #analysis <code> data
         msg_soup=BeautifulSoup(code.string,'lxml')
+        self.fb_dstg=msg_soup.find('input',{'name':'fb_dtsg'}).get('value')
         threadlist_rows=msg_soup.find('div',id='threadlist_rows')
         msg_threads=threadlist_rows.find_all(class_='_55wp _7om2 _5b6o _67ix _2ycx acw del_area async_del abb touchable _592p _25mv')
         self.msg_urls={} #{facebook_name:user_msg_url}
@@ -64,20 +66,23 @@ class FB_Messenger_Handler():
             msgs=msg_block.find_all('div',class_='_34ej')
             for msg in msgs:
                 try:
-                    print(msg.string)
+                    if msg.string!=None:
+                        print(msg.string)
                 #to do:emoji analys (is in <span>
                 except UnicodeEncodeError:
-                    print('emoji')
+                    print("emoji")
+                    emojis=msg.find_all('span',class_='_6qdm')
+                    for emoji in emojis:
+                        print(emoji.string)
 
     def send_msg_to_user(self,username,msg):
-        
-        msg_form_data={
+        self.msg_form_data={
             'tids': 'cid.c.%s:%s'%(self.facebook_id,self.user_id_dir[username]),
             'ids[%s]'%self.user_id_dir[username]: self.user_id_dir[username],
             'body': msg,
             'waterfall_source': 'message',
-            'action_time': '1579314503063',
-            'fb_dtsg': 'AQGVbE6rosB2:AQFHauxhgnUt',
+            'action_time': '1579787390203',
+            'fb_dtsg': self.fb_dstg,
             'jazoest': '22178',
             '__dyn': '1KQEGiFoO13DzUjxC2GfGh28sBBgS5UqxKcwRxG9xu3Za363u2W1DxWUW0x8lxK4ohws82ywUx60GEeE2RwVwUwk9EdEnw9u1-wrEswvosw-wWwt8-0mWeKdwHwEU6i12wm8qwk888C0NE6C2Wq2a4U2IzUuxy0W8' ,
             '__req': 'dv',
@@ -86,7 +91,7 @@ class FB_Messenger_Handler():
             '__user': self.facebook_id,
         }
 
-        send_msg=self.session.post(self.url+'/messages/send/?icm=1&entrypoint=web%3Atrigger%3Athread_list_thread&refid=12',data=msg_form_data)
+        send_msg=self.session.post(self.url+'/messages/send/?icm=1&entrypoint=web%3Atrigger%3Athread_list_thread&refid=12',data=self.msg_form_data)
         if send_msg.status_code!=200:
             print('ERROR:send meesage fail!')
             return
