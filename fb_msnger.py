@@ -36,7 +36,6 @@ class FB_Messenger_Handler():
         msg_threads=threadlist_rows.find_all(class_='_55wp _7om2 _5b6o _67ix _2ycx acw del_area async_del abb touchable _592p _25mv')
         self.msg_urls={} #{facebook_name:user_msg_url}
         self.user_id_dir={} # {facebook_name:facebook_id}
-        msg_threads=threadlist_rows.find_all(class_='_55wp _7om2 _5b6o _67ix _2ycx acw del_area async_del abb touchable _592p _25mv')
         for msg_thread in msg_threads:
             msg_box=msg_thread.find('a')
             user_id_string=msg_thread.get('id')
