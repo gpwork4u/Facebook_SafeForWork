@@ -28,7 +28,7 @@ class FB_Messenger_Handler():
         
         #get messenger data in <code>
         msg_soup = BeautifulSoup(msg_html, 'lxml')
-        code=msg_soup.find('code',id='u_0_10')
+        code=msg_soup.find('code')
         #analysis <code> data
         msg_soup=BeautifulSoup(code.string,'lxml')
         self.fb_dstg=msg_soup.find('input',{'name':'fb_dtsg'}).get('value')
