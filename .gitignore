@@ -1,0 +1,4 @@
+.vscode
+cookie.json
+__pycache__/
+*.pyc

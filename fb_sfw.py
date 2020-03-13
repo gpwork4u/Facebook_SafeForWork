@@ -24,7 +24,10 @@ class FB_SFW():
         self.state='user_chat'
 
     def refresh(self):
-        os.system('cls')
+        if os.name == 'nt':
+            os.system('cls')
+        else:
+            os.system('clear')
         self.fb_msg.get_user_msg(self.current_user)
 
     def send_msg(self,msg):
